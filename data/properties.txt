@@ -1,0 +1,5 @@
+## Configuracion Inicial
+numero.clientes=10
+numero.servidores=2
+numero.consultas.cliente=5
+buffer.size=4
