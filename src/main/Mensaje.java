@@ -10,7 +10,7 @@ public class Mensaje
 	/**
 	 * Mensaje en texto.	
 	 */
-	private String msj;
+	private int msj;
 
 	
 	/**
@@ -18,7 +18,7 @@ public class Mensaje
 	 */
 	private int estado;
 	
-	public Mensaje(int id, String msj)
+	public Mensaje(int id, int msj)
 	{
 		this.id = id;
 		this.msj = msj;
@@ -35,12 +35,12 @@ public class Mensaje
 		this.id = id;
 	}
 
-	public String getMsj()
+	public int getMsj()
 	{
 		return msj;
 	}
 
-	public void setMsj(String msj)
+	public void setMsj(int msj)
 	{
 		this.msj = msj;
 	}
