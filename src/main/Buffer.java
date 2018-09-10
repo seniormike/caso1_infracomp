@@ -43,6 +43,31 @@ public class Buffer {
 			vacio.notify();
 		}
 
-	}
-
+    }
+    
+    public Mensaje retirar ()
+    {
+        synchronized( vacio )
+        {
+            while ( losMensajes.size( ) == 0 )
+            { 
+                try { 
+                    vacio.wait( ); 
+                }catch( InterruptedException e )
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        Mensaje msj;
+        synchronized( this )
+        { 
+            msj = (Mensaje) losMensajes.remove(0); 
+        }
+        synchronized( lleno )
+        {
+             lleno.notify( ); 
+        }
+        return msj;
+        }
 }
