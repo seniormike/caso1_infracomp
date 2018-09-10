@@ -5,7 +5,7 @@ public class Servidor extends Thread
     private Buffer buffer;
 
     public Servidor(Buffer buf){
-        buffer = buf;
+        this.buffer = buf;
     }
 
 

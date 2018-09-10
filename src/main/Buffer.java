@@ -6,12 +6,16 @@ public class Buffer {
 
     private int nCliente;
     private int tamanoBuffer;
-    private ArrayList losMensajes;
+    private ArrayList<Mensaje> losMensajes;
 
     public Buffer (int nCli, int tamBuf){
-        nCliente = nCli;
-        tamanoBuffer = tamBuf;
-        losMensajes = new ArrayList<Mensaje>();
+        this.nCliente = nCli;
+        this.tamanoBuffer = tamBuf;
+        this.losMensajes = new ArrayList<Mensaje>();
+    }
+
+    public void enviar(int msj){
+        
     }
 
 }
