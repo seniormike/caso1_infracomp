@@ -33,7 +33,7 @@ public class Buffer {
 				}
 			}
 		}
-		synchronized(this)
+		synchronized(losMensajes)
 		{
 			losMensajes.add(msj);
 			System.out.println("la cantidad de mensaje en el buffer :  "+ losMensajes.size());
@@ -61,7 +61,7 @@ public class Buffer {
 			}
 		}
 		Mensaje msj;
-		synchronized( this )
+		synchronized( losMensajes )
 		{ 
 			msj = (Mensaje) losMensajes.remove(0); 
 		}
@@ -73,7 +73,9 @@ public class Buffer {
 	}
 	public synchronized int darCantidadMsjsEnBuffer()
 	{
-		return losMensajes.size();
+		synchronized (losMensajes) {
+			return losMensajes.size();
+		}
 	}
 	public synchronized void terminaCliente()
 	{
