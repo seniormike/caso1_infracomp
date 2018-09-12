@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Buffer {
 
-	private int nCliente;
+	private int nClientes;
 	private int tamanoBuffer;
 	private Object lleno, vacio; 
 	private ArrayList<Mensaje> losMensajes;
@@ -13,7 +13,7 @@ public class Buffer {
 	{
 		this.lleno = new Object();
 		this.vacio = new Object();
-		this.nCliente = nCli;
+		this.nClientes = nCli;
 		this.tamanoBuffer = tamBuf;
 		this.losMensajes = new ArrayList<Mensaje>();
 	}
@@ -79,7 +79,7 @@ public class Buffer {
 	}
 	public synchronized void terminaCliente()
 	{
-		nCliente--;
+		nClientes--;
 	}
 	public void termina()
 	{
@@ -91,6 +91,11 @@ public class Buffer {
 		{
 			vacio.notifyAll();
 		}
+	}
+	
+	public synchronized int darNumClientes()
+	{
+		return nClientes;
 	}
 
 

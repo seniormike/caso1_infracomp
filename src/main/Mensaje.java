@@ -12,12 +12,12 @@ public class Mensaje
 	 */
 	private int msj;
 
-	
+
 	/**
 	 * Estado del mensaje: 0 (enviado) v 1 (no enviado). 
 	 */
 	private int estado;
-	
+
 	public Mensaje(int id, int msj)
 	{
 		this.id = id;
@@ -53,5 +53,15 @@ public class Mensaje
 	public void setEstado(int estado)
 	{
 		this.estado = estado;
+	}
+	public synchronized void respuesta()
+	{
+		msj++;
+		estado=1;
+		notifyAllMsj();
+	}
+	public synchronized void notifyAllMsj()
+	{
+		this.notifyAll();
 	}
 }
