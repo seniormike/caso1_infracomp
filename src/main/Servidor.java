@@ -2,11 +2,17 @@ package main;
 
 public class Servidor extends Thread
 {
-    private Buffer buffer;
+    private Buffer bf;
 
-    public Servidor(Buffer buf){
-        this.buffer = buf;
+    public Servidor(Buffer bf)
+    {
+        this.bf = bf;
     }
-
+    
+    public void run()
+    {
+    	
+    	
+    }
 
 }

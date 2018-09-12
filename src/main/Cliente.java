@@ -31,35 +31,18 @@ public class Cliente extends Thread
 	{
 		
 	}
-
 	public int darId()
 	{
 		return this.id;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 
 	public Buffer getBf()
 	{
 		return bf;
 	}
-
-	public void setBf(Buffer bf)
-	{
-		this.bf = bf;
-	}
-
 	public int getNumMsj()
 	{
 		return numMsj;
-	}
-
-	public void setNumMsj(int numMsj)
-	{
-		this.numMsj = numMsj;
 	}
 	
 }

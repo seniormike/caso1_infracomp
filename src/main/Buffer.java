@@ -9,7 +9,8 @@ public class Buffer {
 	private Object lleno, vacio; 
 	private ArrayList<Mensaje> losMensajes;
 
-	public Buffer (int nCli, int tamBuf){
+	public Buffer (int nCli, int tamBuf)
+	{
 		this.lleno = new Object();
 		this.vacio = new Object();
 		this.nCliente = nCli;
@@ -43,31 +44,52 @@ public class Buffer {
 			vacio.notify();
 		}
 
-    }
-    
-    public Mensaje retirar ()
-    {
-        synchronized( vacio )
-        {
-            while ( losMensajes.size( ) == 0 )
-            { 
-                try { 
-                    vacio.wait( ); 
-                }catch( InterruptedException e )
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        Mensaje msj;
-        synchronized( this )
-        { 
-            msj = (Mensaje) losMensajes.remove(0); 
-        }
-        synchronized( lleno )
-        {
-             lleno.notify( ); 
-        }
-        return msj;
-        }
+	}
+
+	public Mensaje retirar ()
+	{
+		synchronized(vacio)
+		{
+			while (losMensajes.size( ) == 0 )
+			{ 
+				try { 
+					vacio.wait(); 
+				}catch( InterruptedException e )
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		Mensaje msj;
+		synchronized( this )
+		{ 
+			msj = (Mensaje) losMensajes.remove(0); 
+		}
+		synchronized( lleno )
+		{
+			lleno.notify( ); 
+		}
+		return msj;
+	}
+	public synchronized int darCantidadMsjsEnBuffer()
+	{
+		return losMensajes.size();
+	}
+	public synchronized void terminaCliente()
+	{
+		nCliente--;
+	}
+	public void termina()
+	{
+		synchronized (lleno)
+		{
+			lleno.notifyAll();
+		}
+		synchronized (vacio)
+		{
+			vacio.notifyAll();
+		}
+	}
+
+
 }
