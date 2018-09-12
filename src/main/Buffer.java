@@ -97,6 +97,4 @@ public class Buffer {
 	{
 		return nClientes;
 	}
-
-
 }

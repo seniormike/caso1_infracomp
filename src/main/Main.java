@@ -5,9 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-
 import javax.swing.JFileChooser;
-
 
 public class Main
 {
@@ -35,7 +33,8 @@ public class Main
 	{
 		JFileChooser fc = new JFileChooser("./data");
 		int resultado = fc.showOpenDialog(fc );
-
+		 
+		
 		if( resultado == JFileChooser.APPROVE_OPTION)
 		{
 			prop = fc.getSelectedFile( );
@@ -57,7 +56,23 @@ public class Main
 		numClientes = Integer.parseInt(p.getProperty("numero.clientes"));
 		numServidores = Integer.parseInt(p.getProperty("numero.servidores"));	
 		numConsultas = Integer.parseInt(p.getProperty("numero.consultas.cliente"));
-		bufferSize = Integer.parseInt(p.getProperty("buffer.size"));	
+		bufferSize = Integer.parseInt(p.getProperty("buffer.size"));
+		
+		Buffer bf = new Buffer(numClientes, bufferSize);
+		
+		for(int i=0 ; i< numConsultas ; i++)
+		{
+//			Cliente cliente = new Cliente(bf,i,Integer.parseInt());
+//			cliente.start() ;
+		}
+
+//		for (int i = 0; i < numeroServidores; i++) {
+//
+//			Servidor servidor = new Servidor(buffer,i) ;
+//			servidor.start();
+//
+//		}
+		
 		
 	}
 
