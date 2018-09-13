@@ -18,30 +18,19 @@ public class Buffer {
 		this.losMensajes = new ArrayList<Mensaje>();
 	}
 
-	public void enviar(Mensaje msj)
+	public int enviar(Mensaje msj)
 	{
 		synchronized(lleno)
 		{
-			while (losMensajes.size() == tamanoBuffer)
+			if (losMensajes.size() == tamanoBuffer)
 			{
-				try {
-					lleno.wait();
-					Thread.yield(); 
-				} catch (Exception e)
-				{
-					e.printStackTrace();
-				}
+				return -1;
 			}
-		}
-		synchronized(losMensajes)
-		{
 			losMensajes.add(msj);
-			System.out.println("la cantidad de mensaje en el buffer :  "+ losMensajes.size());
-		}
-
-		synchronized(vacio)
-		{
-			vacio.notify();
+			synchronized (this) {
+				this.notifyAll();
+			}
+			return 1;
 		}
 
 	}

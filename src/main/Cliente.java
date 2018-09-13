@@ -46,9 +46,30 @@ public class Cliente extends Thread
 	@Override
 	public void run()
 	{
+		int entra = -1;
 		
-
-
+		while(!colita.isEmpty())
+		{
+			Mensaje msj  = colita.remove();
+			synchronized (msj) {
+				while (entra == -1) {
+					entra = bf.enviar(msj);
+					yield();
+				}
+				try
+				{
+					msj.wait();
+				}
+				catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				entra = -1;
+			}
+			if(msj.getMsj() == 0)
+				throw new NullPointerException("No se pudo recibir el mensaje" + id);
+		}
+		bf.terminaCliente();
+		
 	}
 	public int darId()
 	{
